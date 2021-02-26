@@ -1,0 +1,27 @@
+{
+  "name": "exuvia",
+  "version": "0.0.1",
+  "description": "Project Exuvia",
+  "main": "exuvia.js",
+  "dependencies": {
+    "@keyv/sqlite": "^2.0.2",
+    "discord.js": "^12.5.1",
+    "keyv": "^4.0.3",
+    "require-module-from-string": "^1.0.19",
+    "socket.io-client": "^3.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Haru-Industries/Exuvia.git"
+  },
+  "author": "Joshj23icy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Haru-Industries/Exuvia/issues"
+  },
+  "homepage": "https://github.com/Haru-Industries/Exuvia#readme"
+}
