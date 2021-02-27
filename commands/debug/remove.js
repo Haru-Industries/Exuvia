@@ -20,37 +20,41 @@ module.exports = {
     category: 'debug',
     usage: '[command name]',
     async execute(message, args) {
-        if (!args.length) {
-            return message.channel.send(`i need an index or name to remove`);
+        var list = await conlist.get(id)
+        if (typeof (list) == 'undefined') {
+            channel.send(`no values in connection list`)
         } else {
-            var torem = args[0]
-            var list = await conlist.get(id)
-            var connectlist = await conlist.get(id)
-            message.channel.send(`current connections registered:`)
-            Object.getOwnPropertyNames(list).forEach(
-                function (val) {
-                    message.channel.send(`index ${val}: ${list[val]['id']}`)
-                }
-            )
-            if (typeof (connectlist) == 'undefined') {
-                // check size; index = size +1
-                channel.send(`no values in connection list`)
+            if (!args.length) {
+                return message.channel.send(`i need an index or name to remove`);
             } else {
-                console.log(parseInt(torem))
-                if (!isNaN(torem)) {
-                    console.log(list[torem])
+                //checkj if its fuklly  number
+                //console.log(isFinite(args[0]))
+
+                if (isFinite(args[0])) {
+                    //console.log(`is num`)
+                    var torem = args[0].split('.')[0]
+                    var todel = list[torem]['id']
                     delete list[torem]
+                    await conlist.set(id, list)
+                    message.channel.send(`removed index ${args[0]}: ${todel}`)
+                    //message.channel.send(`New connection list: ${await conlist.get(id)}`)
+                    updatelist()
+                } else {
+                    //console.log(`not num`)
+                    Object.getOwnPropertyNames(list).forEach(
+                        async function (val) {
+                            //message.channel.send(`index ${val}: ${list[val]['id']}`)
+                            if (list[val]['id'] == args[0]) {
+                                delete list[val]
+                                await conlist.set(id, list)
+                                message.channel.send(`removed ${args[0]} from connections list`)
+                            }
+                        }
+                    )
                 }
-
-
-                console.log(list)
-
-                //list[Object.size(list) + 1] = { 'id': `${args[0]}`, 'addr': `${args[1]}` }
-                await conlist.set(id, list)
-                message.channel.send(`New connection list: ${await conlist.get(id)}`)
-                updatelist()
             }
         }
+
 
     }
 }

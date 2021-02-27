@@ -28,7 +28,8 @@ module.exports = {
                 // check size; index = size +1
                 message.channel.send(`adding ${args[0]}`)
                 var list = new Object();
-                list['0'] = { 'id': `${args[0]}`, 'addr': `ws://localhost:${args[1]}` };//, 'succ': `${args[2]}` };
+                var address = isNaN(args[1]) == true ? args[1] : `ws://localhost:${args[1]}`;
+                list['0'] = { 'id': `${args[0]}`, 'addr': address };//, 'succ': `${args[2]}` };
                 await conlist.set(id, list)
                 //console.log(Object.entries(await conlist.get(id)))
                 updatelist()
@@ -38,7 +39,8 @@ module.exports = {
 
                 message.channel.send(`adding ${args[0]}`)
 
-                list[Object.size(list)] = { 'id': `${args[0]}`, 'addr': `ws://localhost:${args[1]}` };//, 'succ': `${args[2]}` }
+                var address = isNaN(args[1]) == true ? args[1] : `ws://localhost:${args[1]}`;
+                list[Object.size(list)] = { 'id': `${args[0]}`, 'addr': address };//, 'succ': `${args[2]}` }
             }
             await conlist.set(id, list)
             updatelist()

@@ -16,8 +16,8 @@ pfx.on('error', err => console.error(err));
 ID.on('error', err => console.error(err));
 Creation.on('error', err => console.error(err));
 Conns.on('error', err => console.error(err));
-conlist.on('error', err => console.error(err))
-
+conlist.on('error', err => console.error(err));
+cmds.on('error', err => console.error(err));
 
 
 
